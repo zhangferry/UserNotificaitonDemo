@@ -559,6 +559,7 @@
 				8E41389A1D9E08AE00F0BC61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E89F5B91D9A01DD00D567C6 /* Build configuration list for PBXProject "UserNotificationsDemo" */ = {
 			isa = XCConfigurationList;

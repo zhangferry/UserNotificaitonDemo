@@ -21,6 +21,7 @@
     
     //注册通知
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
             NSLog(@"request authorization successed!");
@@ -36,13 +37,6 @@
     return YES;
 }
 
-/**
- 通过实现协议，使 App 处于前台时捕捉并处理即将触发的推送：让它只显示 alert 和 sound ,而忽略 badge 。
- */
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    
-    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound);
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

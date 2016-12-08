@@ -21,7 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.notiContent = [[UNMutableNotificationContent alloc] init];
-    
+    //引入代理
+    [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
 }
 /**
  添加普通通知
@@ -101,6 +102,7 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
     
     NSString *categoryIdentifier = response.notification.request.content.categoryIdentifier;
+    NSLog(@"收到通知：%@",response.notification.request.content);
     
     if ([categoryIdentifier isEqualToString:@"Categroy"]) {
         //识别需要被处理的拓展
@@ -122,9 +124,13 @@
     completionHandler();
 }
 
+//只有当前处于前台才会走，加上返回方法，使在前台显示信息
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
     
     NSLog(@"执行willPresentNotificaiton");
+    completionHandler(UNNotificationPresentationOptionBadge|
+                      UNNotificationPresentationOptionSound|
+                      UNNotificationPresentationOptionAlert);
 }
 
 - (void)didReceiveMemoryWarning {
