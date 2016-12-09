@@ -10,6 +10,6 @@ iOS10通知UserNotifications.framework学习(一)
     - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
     
     /*
-     这个代理方法，只有用户点击消息才会触发，用户长按（3DTouch）、Action并不会触发，最后需要执行completionHander();否则会报warning:
-    */
+    这个代理方法，只有用户点击消息才会触发，用户长按（3DTouch）、Action并不会触发，最后需要执行completionHander();否则会报warning:
+    */
     - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
